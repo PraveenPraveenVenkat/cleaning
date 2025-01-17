@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Body = () => {
+const Home = () => {
   return (
     <div>
       {/* <h4>WHY CHOOSE UgsdgsdfgdfgxdgdgS </h4> */}
@@ -8,4 +8,4 @@ const Body = () => {
   )
 }
 
-export default Body;
+export default Home;
