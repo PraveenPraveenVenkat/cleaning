@@ -2,129 +2,130 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  return (<>
-    <div className="bg-teal-100 flex justify-end w-full">
-      <ul
-        className="flex gap-4 p-1 text-sm bg-neutral-300 bg-opacity-50 rounded-lg shadow-sm"
-        role="tablist"
-      >
-        <li className="flex-1 px-6">
-          <Link
-            to="/Header"
-            className="w-full py-2 block text-center text-black font-medium rounded-lg hover:bg-white hover:text-blue-600 focus:outline-none active:bg-blue-600 active:text-white"
-          >
-            Home
-          </Link>
-        </li>
-        <li className="flex-1 px-6">
-          <Link
-            to="/profile"
-            className="w-full py-2 block text-center text-black font-medium rounded-lg hover:bg-white hover:text-blue-600 focus:outline-none active:bg-blue-600 active:text-white"
-          >
-            Profile
-          </Link>
-        </li>
-        <li className="flex-1 px-6">
-          <Link
-            to="/about"
-            className="w-full py-2 block text-center text-black font-medium rounded-lg hover:bg-white hover:text-blue-600 focus:outline-none active:bg-blue-600 active:text-white"
-          >
-            About
-          </Link>
-        </li>
-        <li className="flex-1 px-6">
-          <Link
-            to="/contact"
-            className="w-full py-2 block text-center text-black font-medium rounded-lg hover:bg-white hover:text-blue-600 focus:outline-none active:bg-blue-600 active:text-white"
-          >
-            Contact
-          </Link>
-        </li>
-      </ul>
-    </div>
+  return (
+    <>
+      {/* Responsive Navigation */}
+      <div className="bg-teal-100 flex justify-end w-full">
+        <ul
+          className="flex flex-wrap gap-4 p-2 text-sm bg-neutral-300 bg-opacity-50 rounded-lg shadow-sm md:gap-8"
+          role="tablist"
+        >
+          {["Home", "Profile", "About", "Contact"].map((item) => (
+            <li key={item} className="flex-1">
+              <Link
+                to={`/${item.toLowerCase()}`}
+                className="block text-center text-black font-medium rounded-lg hover:bg-white hover:text-blue-600 focus:outline-none active:bg-blue-600 active:text-white py-2 px-4"
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-
+      {/* Hero Section */}
       <div
-        className="bg-cyan-500 h-screen flex flex-col justify-between p-4 bg-cover   bg-center"
+        className="bg-cyan-500 min-h-screen flex flex-col justify-between p-4 bg-cover bg-center"
         style={{
           backgroundImage: "url('https://media.istockphoto.com/id/1440050060/photo/cleaning-service-portrait-and-cleaner-in-an-office-with-spray-bottle-of-disinfectant-bleach.jpg?s=612x612&w=0&k=20&c=Fo5LYd-f7qyTr6W9IXWUWcbga2DbwlsbVbsPzWpF4XQ=')",
         }}
       >
-        {/* Main Text Section */}
-        <div className="flex flex-col items-start justify-center text-white mt-12">
-          <h4 className="mt-4">RENEW YOUR LOOK</h4>
-          <h2 className="text-3xl font-bold mt-4">
+        {/* Intro Text */}
+        <div className="text-white mt-12 md:mt-24">
+          <h4 className="text-sm md:text-lg">RENEW YOUR LOOK</h4>
+          <h2 className="text-2xl md:text-4xl font-bold mt-4">
             A TRADITION OF <br /> QUALITY CLEANING
           </h2>
-          <button className="border-4 mt-8 px-4 rounded-full py-2">Contact Us</button>
+          <button className="border-4 mt-8 px-4 py-2 rounded-full">
+            Contact Us
+          </button>
         </div>
 
-        {/* Grid Section */}
-        <div className="grid grid-cols-3 gap-16 mt-12 px-12">
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          {/* https://cdn-icons-gif.flaticon.com/9576/9576127.gif */}
-          
-            <img src='https://cdn-icons-gif.flaticon.com/14251/14251133.gif' className='h-12'></img>
-            <span>Professional Cleaning</span>
-            <p className="text-xs">Housekeeping is responsible for minor security in hotel Ecosystem</p>
-          </div>
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src='https://cdn-icons-gif.flaticon.com/13275/13275329.gif' className='h-12'></img>
-            <span>Fast and Efficient</span>
-            <p className="text-xs">Our aim is to keep the house clean. Your aim will help!</p>
-          </div>
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src='https://cdn-icons-gif.flaticon.com/13275/13275383.gif' className='h-12'></img>
-            <span>Renew Your Look</span>
-            <p className="text-xs">Both of us take a lot of time in getting cleaned and maintaining the beauty of the home.</p>
-          </div>
+        {/* Features Section */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-16 mt-12 px-4 md:px-12">
+          {[
+            {
+              img: "https://cdn-icons-gif.flaticon.com/14251/14251133.gif",
+              title: "Professional Cleaning",
+              text: "Housekeeping is responsible for minor security in hotel ecosystems.",
+            },
+            {
+              img: "https://cdn-icons-gif.flaticon.com/13275/13275329.gif",
+              title: "Fast and Efficient",
+              text: "Our aim is to keep the house clean. Your aim will help!",
+            },
+            {
+              img: "https://cdn-icons-gif.flaticon.com/13275/13275383.gif",
+              title: "Renew Your Look",
+              text: "Both of us take time in getting cleaned and maintaining the beauty of the home.",
+            },
+          ].map((feature, idx) => (
+            <div
+              key={idx}
+              className="bg-white shadow-md rounded-lg p-4 text-center flex flex-col items-center"
+            >
+              <img src={feature.img} alt={feature.title} className="h-12 mb-4" />
+              <h5 className="text-lg font-semibold">{feature.title}</h5>
+              <p className="text-xs">{feature.text}</p>
+            </div>
+          ))}
         </div>
 
-        {/* Text Section */}
-        <div className="grid   grid-cols-3 gap-16 mt-12 px-12">
-          <h2 className="text-2xl font-bold text-center mt-24">A Clean House is a Happy Place!</h2>
-          <p className='mt-24'>Washla has met the demands of its clients and continues to provide exceptional services.<br/>
-            Washla customers have a tremendous<br /> opportunity to answer the call of <br /> needs across the globe. It has 26 affiliated<br /> soybean-product states.
+        {/* Call to Action */}
+        <div className="text-center bg-emerald-400 py-6 mt-12">
+          <h4 className="text-white">WHY CHOOSE US</h4>
+          <h2 className="text-lg font-bold mt-4">Tradition of Trust</h2>
+          <p className="text-sm text-white">
+            We specialize in intelligent & effective search and believe in the power of
+            partnership to grow business.
           </p>
-          <p className="mt-24 text-black">
-            World's leading non-asset-based supply chain<br /> management companies. We design and implement industry-leading solutions. We specialize in<br />
-            intelligent & effective search and believe in<br /> the power of business.
-          </p>
-        </div>
-
-        {/* Last Section */}
-        <div className=" text-center bg-emerald-400 w-full mt-3  py-4">
-          <h4 className="">WHY CHOOSE US</h4>
-          <h2 className='text-lg font-bold mt-4'>Tradition of Trust</h2>
-          <p>we specialise in intelligent & effective Search and believes in the power of<br/>partnership to grow business</p>
-        
-        <div className="grid grid-cols-3 gap-16 mt-12 px-12">
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-
-          <img src='https://cdn-icons-gif.flaticon.com/13893/13893651.gif' className='h-12'></img>
-            <span className='text-xl'>Profesional Team</span>
-            <p className="text-xs">Our team use a Sanitizing solution to <br/></p>
           </div>
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          
-          <img src='https://cdn-icons-gif.flaticon.com/17569/17569422.gif' className='h-12'></img>
-            <span className='text-xl'> 24/7 Services</span>
-            <p className="text-xs">Our aim is to keep the house clean. Your aim will help!</p>
-          </div>
-          <div className="bg-white text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
+       
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-12 px-4 sm:px-8 md:px-12">
+  {/* Professional Team */}
+  <div className="bg-white text-lg w-full max-w-xs h-36 flex flex-col justify-center items-center text-center mx-auto">
+    <img
+      src="https://cdn-icons-gif.flaticon.com/13893/13893651.gif"
+      className="h-12 mb-2"
+      alt="Professional Team"
+    />
+    <span className="text-xl font-semibold">Professional Team</span>
+    <p className="text-xs mt-2">
+      Our team uses a sanitizing solution to ensure cleanliness.
+    </p>
+  </div>
 
-          <img src='https://cdn-icons-png.flaticon.com/128/10521/10521208.png' className='h-12'></img>
-            <span className='text-xl'>Service Guarantee</span>
-            <p className="text-xs">Both of us take a lot of time in getting cleaned and maintaining the beauty of the home.</p>
-          </div>
-        </div>
-        
-      </div>
-      <div>
-      <div className="flex h-screen">
+  {/* 24/7 Services */}
+  <div className="bg-white text-lg w-full max-w-xs h-36 flex flex-col justify-center items-center text-center mx-auto">
+    <img
+      src="https://cdn-icons-gif.flaticon.com/17569/17569422.gif"
+      className="h-12 mb-2"
+      alt="24/7 Services"
+    />
+    <span className="text-xl font-semibold">24/7 Services</span>
+    <p className="text-xs mt-2">
+      Our aim is to keep your house clean. Your support helps us achieve it!
+    </p>
+  </div>
+  </div>
+
+  {/* Service Guarantee */}
+  <div className="bg-white text-lg w-full max-w-xs h-36 flex flex-col justify-center items-center text-center mx-auto">
+    <img
+      src="https://cdn-icons-png.flaticon.com/128/10521/10521208.png"
+      className="h-12 mb-2"
+      alt="Service Guarantee"
+    />
+    <span className="text-xl font-semibold">Service Guarantee</span>
+    <p className="text-xs mt-2">
+      Together, we ensure the beauty and cleanliness of your home.
+    </p>
+  </div>
+</div>
+<div className="flex flex-col lg:flex-row h-auto lg:h-screen">
   {/* Left side with the image */}
   <div
-    className="w-1/2 bg-cyan-500 h-full bg-cover bg-center"
+    className="w-full lg:w-1/2 h-64 lg:h-full bg-cyan-500 bg-cover bg-center"
     style={{
       backgroundImage:
         "url(https://media.istockphoto.com/id/1974456209/photo/selective-focus-on-happy-african-american-volunteer-helping-senior-lady-to-clean-house.webp?b=1&s=612x612&w=0&k=20&c=dtNs6d4JnyH7_eHHUa29h3EOhOtR28qF62HIdKo9NAc=)",
@@ -132,76 +133,112 @@ const Header = () => {
   ></div>
 
   {/* Right side with the content */}
-  <div className="p-8 pt-24">
+  <div className="p-6 lg:p-8 lg:pt-24 flex flex-col items-center">
     {/* First section */}
-    <div className="mb-8">
-      <h2 className="text-xs">MADE FOR YOU</h2>
-      <h1 className="text-2xl font-bold">
+    <div className="mb-8 text-center">
+      <h2 className="text-sm lg:text-xs font-medium text-gray-500">MADE FOR YOU</h2>
+      <h1 className="text-2xl lg:text-3xl font-bold mt-2">
         A Cleaner Place is a Safe Place
       </h1>
-      
-      <p className="mt-2">
-        Washla Cleaning service. We are a company dedicated to giving our
+      <p className="mt-4 text-sm lg:text-base">
+        Washla Cleaning Service. We are a company dedicated to giving our
         customers back the time they deserve to enjoy the things they love.
       </p>
     </div>
 
-    <div className="grid grid-cols-2 gap-16 mt-12 px-12">
-  {/* Box 1 */}
-  <div className="bg-white shadow-lg rounded-lg w-72 h-36 flex flex-col justify-center items-center text-center p-8 mt-32">
-  <img src='https://cdn-icons-gif.flaticon.com/13893/13893637.gif' className='h-12'></img>
-    <span className="text-xl font-semibold">Professional Team</span>
-    <p className="text-xs mt-2">
-      Our team uses a sanitizing solution to ensure cleanliness and hygiene.
-    </p>
+    {/* Features grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 w-full max-w-xl">
+      {/* Box 1 */}
+      <div className="bg-white shadow-lg rounded-lg flex flex-col justify-center items-center text-center p-4">
+        <img
+          src="https://cdn-icons-gif.flaticon.com/13893/13893637.gif"
+          className="h-12 mb-2"
+          alt="Professional Team"
+        />
+        <span className="text-lg font-semibold">Professional Team</span>
+        <p className="text-sm mt-2">
+          Our team uses a sanitizing solution to ensure cleanliness and hygiene.
+        </p>
+      </div>
+
+      {/* Box 2 */}
+      <div className="bg-white shadow-lg rounded-lg flex flex-col justify-center items-center text-center p-4">
+        <img
+          src="https://cdn-icons-gif.flaticon.com/11706/11706667.gif"
+          className="h-12 mb-2"
+          alt="Fast and Efficient"
+        />
+        <span className="text-lg font-semibold">Fast and Efficient</span>
+        <p className="text-sm mt-2">
+          Both of us take a lot of time getting cleaned and maintaining the beauty of the home.
+        </p>
+      </div>
+    </div>
   </div>
 
-  
-  <div className="bg-white shadow-lg rounded-lg w-72 h-36 flex flex-col justify-center items-center text-center p-4">
-   
-    <img src=' https://cdn-icons-gif.flaticon.com/11706/11706667.gif' className='h-12'></img>
-    <span className="text-xl font-semibold">Fast and efficient</span>
-    <p className="text-xs mt-2">
-      Both of us take a lot of time getting cleaned and maintaining the beauty of the home.
-    </p>
-  </div>
-</div>
 
 
-  </div>
-  
-</div>
-
-<div
-  className="flex w-96px h-80 mt-12 flex-col pt-12 px-24 justify-between p-4 bg-cover bg-center"
+  <div
+  className="flex flex-col w-full max-w-md mx-auto mt-12 pt-8 px-4 sm:px-8 bg-cover bg-center"
   style={{
     backgroundImage:
       "url('https://imgs.search.brave.com/B7jv3PLqIOmbHcqZX_LH9em8cqwqjatHEMSygc-p9Rw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90cmFm/ZnQuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIyLzExL3Rv/d2ZpcXUtYmFyYmh1/aXlhLWhvLXA3cUxC/ZXdrLXVuc3BsYXNo/LTc2OHg1MTIucG5n')",
   }}
-><div>
-  <h2 className=' text-black text-2xl'>Our Great Service</h2>
-  <p className='text-sky-500'>Restoring The beauty and freshness of all your upholstered fabrics and Table<br/>the work out of house for you </p>
+>
+  {/* Header Section */}
+  <div className="mb-6 text-center">
+    <h2 className="text-lg sm:text-2xl font-bold text-black">
+      Our Great Service
+    </h2>
+    <p className="text-sm sm:text-base text-sky-500 mt-2">
+      Restoring the beauty and freshness of all your upholstered fabrics and 
+      taking the work out of house chores for you.
+    </p>
   </div>
-<div className="grid grid-cols-3 gap-16 mt-2 px-12">
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-         
-          <img src=' https://cdn-icons-gif.flaticon.com/13275/13275394.gif' className='h-12'></img>
-            <span className='text-xl text-white'>Home Cleaning</span>
-            <p className="text-xs text-white">Home and Throughly launder them<br/> between usage,We give our teams he<br/> accusantium doloremque laudantium</p>
-          </div>
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src=' https://cdn-icons-gif.flaticon.com/10053/10053386.gif' className='h-12'></img>
-            <span className='text-xl text-white'> Windows Cleaning</span>
-            <p className="text-xs text-white">OWe are closely monitoring national,state <br/>and localhealth agencies for the most<br/>recent Developments</p>
-          </div>
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          
-          <img src='https://cdn-icons-png.flaticon.com/128/15300/15300135.png' className='h-12'></img>
-            <span className='text-xl text-white'>Service Guarantee</span>
-            <p className="text-xs text-white">Both of us take a lot of time in getting cleaned and maintaining the beauty of the home.</p>
-          </div>
-        </div>
+
+  {/* Features Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+    {/* Card 1 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/13275/13275394.gif"
+        className="h-12 mb-2"
+        alt="Home Cleaning"
+      />
+      <span className="text-lg font-semibold">Home Cleaning</span>
+      <p className="text-xs mt-2">
+        Home and thoroughly launder them between usage. We ensure cleanliness and comfort.
+      </p>
+    </div>
+
+    {/* Card 2 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/10053/10053386.gif"
+        className="h-12 mb-2"
+        alt="Windows Cleaning"
+      />
+      <span className="text-lg font-semibold">Windows Cleaning</span>
+      <p className="text-xs mt-2">
+        We closely monitor health agencies for the latest updates to ensure safe cleaning services.
+      </p>
+    </div>
+
+    {/* Card 3 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/15300/15300135.png"
+        className="h-12 mb-2"
+        alt="Service Guarantee"
+      />
+      <span className="text-lg font-semibold">Service Guarantee</span>
+      <p className="text-xs mt-2">
+        Both of us take the time to ensure cleanliness and maintain the beauty of your home.
+      </p>
+    </div>
+  </div>
 </div>
+
 
 <div className=" mt-12 pt-12 pb-12">
 <h2 className='text-black text-2xl'>Our Team</h2>
@@ -253,43 +290,71 @@ const Header = () => {
      </div>
         </div>
 
-<div
-  className="flex w-96px h-80 mt-12 flex-col pt-12 px-24 justify-between p-4 bg-cover bg-center"
+        <div
+  className="flex flex-col w-full max-w-md mx-auto mt-8 pt-8 px-4 sm:px-8 bg-cover bg-center"
   style={{
     backgroundImage:
-      "url(https://media.istockphoto.com/id/1613082024/photo/sponge-on-green-background.jpg?s=612x612&w=0&k=20&c=iyk6c1or9b03tdEwbYkJfi-NFecwctoVTtcst9AwMYY=)",
+      "url('https://media.istockphoto.com/id/1613082024/photo/sponge-on-green-background.jpg?s=612x612&w=0&k=20&c=iyk6c1or9b03tdEwbYkJfi-NFecwctoVTtcst9AwMYY=')",
   }}
-><div>
-  <h2 className=' text-white text-2xl'>Need Help With Cleaning?</h2>
- 
- <button className='text-white rounded-full h-12 text-center bg-blue-500'>Request Call Back</button>
+>
+  {/* Header Section */}
+  <div className="mb-6 text-center">
+    <h2 className="text-white text-xl sm:text-2xl font-bold">
+      Need Help With Cleaning?
+    </h2>
+    <button className="mt-4 text-white rounded-full h-10 px-6 bg-blue-500 hover:bg-blue-600 transition">
+      Request Call Back
+    </button>
   </div>
-<div className="grid grid-cols-4 gap-16 mt-2 px-12">
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src='  https://cdn-icons-gif.flaticon.com/15579/15579015.gif' className='h-12'></img>
-            <span className='text-2xl text-black'>385</span>
-            <p className='text-x text-white'> Happy Customer</p>
-          
-          </div>
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src='  https://cdn-icons-gif.flaticon.com/16678/16678014.gif' className='h-12'></img>
-            <span className='text-2xl text-black'> 842 </span>
-            <p className='text-x text-white'> House Cleaned</p>
-           
-          </div>
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src=' https://cdn-icons-gif.flaticon.com/13311/13311710.gif' className='h-12'></img>
-            <span className='text-2xl text-black'>489</span>
-            <p className='text-x text-white'>Awards Received</p>
-          
-          </div>
-          <div className="bg-sky-500 text-lg w-72 h-36 flex flex-col justify-center items-center text-center">
-          <img src='https://cdn-icons-gif.flaticon.com/13893/13893658.gif' className='h-12'></img>
-            <span className='text-2xl text-black'>1344</span>
-            <p className='text-x text-white '>Glass Cleaned</p>
-          
-          </div>
-        </div>
+
+  {/* Stats Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+    {/* Stat Card 1 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/15579/15579015.gif"
+        className="h-12 mb-2"
+        alt="Happy Customer"
+      />
+      <span className="text-2xl text-black font-semibold">385</span>
+      <p className="text-sm">Happy Customers</p>
+    </div>
+
+    {/* Stat Card 2 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/16678/16678014.gif"
+        className="h-12 mb-2"
+        alt="House Cleaned"
+      />
+      <span className="text-2xl text-black font-semibold">842</span>
+      <p className="text-sm">Houses Cleaned</p>
+    </div>
+
+    {/* Stat Card 3 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/13311/13311710.gif"
+        className="h-12 mb-2"
+        alt="Awards Received"
+      />
+      <span className="text-2xl text-black font-semibold">489</span>
+      <p className="text-sm">Awards Received</p>
+    </div>
+
+    {/* Stat Card 4 */}
+    <div className="bg-sky-500 text-white rounded-lg shadow-lg p-4 flex flex-col justify-center items-center text-center">
+      <img
+        src="https://cdn-icons-gif.flaticon.com/13893/13893658.gif"
+        className="h-12 mb-2"
+        alt="Glass Cleaned"
+      />
+      <span className="text-2xl text-black font-semibold">1344</span>
+      <p className="text-sm">Glass Cleaned</p>
+    </div>
+  </div>
+
+
         
 </div>
 <div className="bg-blue-600 mt-12 py-12">
@@ -344,7 +409,7 @@ const Header = () => {
         
 
           <div>
-            <h2 className="text-lg font-bold">Company Name</h2>
+            <h2 className="text-lg font-bold">Cleaning Company </h2>
             <p className="mt-4 text-gray-400">
               We provide top-notch cleaning services for residential and commercial spaces. 
               Trust us to keep your spaces sparkling clean!
@@ -402,9 +467,9 @@ const Header = () => {
       </div>
 
 </div>
-      </div>
-      
      
+      
+   
     </>
   );
 };
